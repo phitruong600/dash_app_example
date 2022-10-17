@@ -1,13 +1,12 @@
-from dash import Dash, html, dcc
-import plotly.express as px
-import pandas as pd
+import dash_bootstrap_components as dbc
 import firebase_admin
+import pandas as pd
+import plotly.express as px
+from dash import Dash, dcc, html
 from firebase_admin import credentials, firestore
 
-import dash_bootstrap_components as dbc
-
 # TẢI DỮ LIỆU TỪ FIRESTORE
-cred = credentials.Certificate("./iuh-20015341-b263e-firebase-adminsdk-g6pen-9b9e0fdbc3.json")
+cred = credentials.Certificate("x\dash_app_example\iuh-20015341-truong-firebase-adminsdk-2ss1z-66bdee9621.json")
 app = firebase_admin.initialize_app(cred)
 dbFireStore = firestore.client()
 
@@ -63,9 +62,9 @@ figTileLoiNhuan = px.sunburst(df, path=['YEAR_ID', 'CATEGORY'], values='LoiNhuan
 doanhso = round(df["SALES"].sum(), 2) 
 loinhuan = round(df['LoiNhuan'].sum(), 2)
 
-topDoanhSo = df['SALES'].max()
+topDoanhSo = df.groupby('CATEGORY').sum()['SALES'].max()
 
-topLoiNhuan = round(df['LoiNhuan'].max(), 2)
+topLoiNhuan = df.groupby('CATEGORY').sum()['LoiNhuan'].max()
 
 
 app.layout = dbc.Container(
