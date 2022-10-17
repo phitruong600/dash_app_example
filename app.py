@@ -1,10 +1,9 @@
-from dash import Dash, html, dcc
-import plotly.express as px
-import pandas as pd
-import firebase_admin
-from firebase_admin import credentials, firestore
-
 import dash_bootstrap_components as dbc
+import firebase_admin
+import pandas as pd
+import plotly.express as px
+from dash import Dash, dcc, html
+from firebase_admin import credentials, firestore
 
 # TẢI DỮ LIỆU TỪ FIRESTORE
 cred = credentials.Certificate("./iuh-20015341-b263e-firebase-adminsdk-g6pen-9b9e0fdbc3.json")
@@ -49,12 +48,12 @@ figLoiNhuanBanHangTheoNam = px.line(dfGroup, x='YEAR_ID', y="LoiNhuan",
                                     )
 
 
-figTileDoanhSo = px.sunburst(df, path=['YEAR_ID', 'MONTH_ID'], values='SALES',
+figTileDoanhSo = px.sunburst(df, path=['YEAR_ID', 'CATEGORY'], values='SALES',
                              color='SALES',
                              labels={'parent': 'Năm', 'id': 'Year / month','SALES': 'Doanh số'},
                              title='Tỉ lệ đóng góp của doanh số theo từng danh mục trong từng năm')
 
-figTileLoiNhuan = px.sunburst(df, path=['YEAR_ID', 'MONTH_ID'], values='LoiNhuan',
+figTileLoiNhuan = px.sunburst(df, path=['YEAR_ID', 'CATEGORY'], values='LoiNhuan',
                               color='LoiNhuan',
                               labels={'parent': 'Năm', 'id': 'Year / month', 'LoiNhuan': 'Lợi nhuận'},
                               title='Tỉ lệ đóng góp của lợi nhuận theo từng danh mục trong từng năm')
@@ -76,7 +75,7 @@ app.layout = dbc.Container(
                 html.Nav(
                     className="col-12 title-table navbar navbar-light bg-info text-center mb-0",
                     children=html.H2(
-                        children=["XÂY DỰNG DANH MỤC SẢN PHÂM TIỀM NĂNG",
+                        children=["DANH MỤC SẢN PHẨM TIỀM NĂNG",
 
                                   html.Br(), html.H5(
                                       children="Nguyễn Phi Trường - 20015341"
