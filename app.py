@@ -6,7 +6,7 @@ from dash import Dash, dcc, html
 from firebase_admin import credentials, firestore
 
 # TẢI DỮ LIỆU TỪ FIRESTORE
-cred = credentials.Certificate("x\dash_app_example\iuh-20015341-truong-firebase-adminsdk-2ss1z-66bdee9621.json")
+cred = credentials.Certificate("./iuh-20015341-truong-firebase-adminsdk-2ss1z-66bdee9621.json")
 app = firebase_admin.initialize_app(cred)
 dbFireStore = firestore.client()
 
