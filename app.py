@@ -75,7 +75,7 @@ app.layout = dbc.Container(
                 html.Nav(
                     className="col-12 title-table navbar navbar-light bg-info text-center mb-0",
                     children=html.H2(
-                        children=["DANH MỤC SẢN PHÂM TIỀM NĂNG",
+                        children=["DANH MỤC SẢN PHẨM TIỀM NĂNG",
 
                                   html.Br(), html.H5(
                                       children="Nguyễn Phi Trường - 20015341"
